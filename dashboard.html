@@ -3,139 +3,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineLingua - لوحة التحكم</title>
+    <title>CineLingua | لوحة التحكم - تعلم الإنجليزية بالأفلام</title>
+    
+    <!-- CSS Files -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
+    
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts - Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard">
-        <!-- الشريط الجانبي -->
-        <aside class="sidebar">
+        <!-- ======================================== -->
+        <!-- الشريط الجانبي - Sidebar فخم ومتطور -->
+        <!-- ======================================== -->
+        <aside class="sidebar" data-aos="fade-left" data-aos-duration="1000">
+            <!-- الجزء العلوي مع اللوجو -->
             <div class="logo">
                 <i class="fas fa-film"></i>
                 <span>CineLingua</span>
+                <div class="logo-glow"></div>
             </div>
+
+            <!-- قائمة التنقل الرئيسية -->
             <nav class="sidebar-nav">
-                <a href="dashboard.html" class="active">
+                <a href="dashboard.html" class="active" data-tooltip="الصفحة الرئيسية">
                     <i class="fas fa-home"></i>
                     <span>الرئيسية</span>
+                    <span class="active-indicator"></span>
                 </a>
-                <a href="#library">
+                <a href="#library" data-tooltip="مكتبة الأفلام">
                     <i class="fas fa-book"></i>
                     <span>المكتبة</span>
+                    <span class="badge">24</span>
                 </a>
-                <a href="#challenges">
+                <a href="#challenges" data-tooltip="التحديات اليومية">
                     <i class="fas fa-trophy"></i>
                     <span>التحديات</span>
+                    <span class="badge hot">3</span>
                 </a>
-                <a href="#words">
+                <a href="#words" data-tooltip="كلماتي المحفوظة">
                     <i class="fas fa-bookmark"></i>
                     <span>كلماتي</span>
+                    <span class="badge">120</span>
                 </a>
-                <a href="#achievements">
+                <a href="#achievements" data-tooltip="الإنجازات والشارات">
                     <i class="fas fa-medal"></i>
                     <span>الإنجازات</span>
                 </a>
-                <a href="#community">
+                <a href="#community" data-tooltip="مجتمع المتعلمين">
                     <i class="fas fa-users"></i>
                     <span>المجتمع</span>
                 </a>
-                <a href="#settings">
+                <a href="#settings" data-tooltip="الإعدادات">
                     <i class="fas fa-cog"></i>
                     <span>الإعدادات</span>
                 </a>
             </nav>
+
+            <!-- الجزء السفلي مع معلومات المستخدم -->
             <div class="sidebar-footer">
-                <div class="user-info">
-                    <img src="https://via.placeholder.com/40" alt="User">
-                    <div>
-                        <p>أحمد محمد</p>
-                        <small>المستوى: متوسط</small>
+                <div class="user-info" onclick="openProfile()">
+                    <div class="user-avatar">
+                        <img src="https://ui-avatars.com/api/?name=أحمد+محمد&background=6366f1&color=fff&size=100" alt="User">
+                        <span class="online-status"></span>
                     </div>
+                    <div class="user-details">
+                        <p class="user-name">أحمد محمد</p>
+                        <div class="user-level">
+                            <i class="fas fa-crown"></i>
+                            <small>المستوى: متوسط</small>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down user-arrow"></i>
+                </div>
+
+                <!-- قائمة سريعة للمستخدم (تظهر عند النقر) -->
+                <div class="user-quick-menu" id="userQuickMenu">
+                    <a href="#profile"><i class="fas fa-user"></i> الملف الشخصي</a>
+                    <a href="#stats"><i class="fas fa-chart-line"></i> إحصائياتي</a>
+                    <a href="#logout"><i class="fas fa-sign-out-alt"></i> تسجيل خروج</a>
                 </div>
             </div>
         </aside>
 
-        <!-- المحتوى الرئيسي -->
+        <!-- ======================================== -->
+        <!-- المحتوى الرئيسي - Main Content -->
+        <!-- ======================================== -->
         <main class="main-content">
-            <!-- شريط العلوي -->
-            <header class="dashboard-header">
-                <h1>مرحباً أحمد! 👋</h1>
-                <div class="header-search">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="ابحث عن فيلم أو كلمة...">
-                </div>
-            </header>
-
-            <!-- بطاقات التقدم -->
-            <div class="progress-cards">
-                <div class="progress-card">
-                    <div class="card-icon blue">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>7 أيام</h3>
-                        <p>Streak الحالي</p>
-                    </div>
-                </div>
-                <div class="progress-card">
-                    <div class="card-icon green">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>120 كلمة</h3>
-                        <p>كلمات محفوظة</p>
-                    </div>
-                </div>
-                <div class="progress-card">
-                    <div class="card-icon purple">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>45 مشهد</h3>
-                        <p>تمت مشاهدتها</p>
-                    </div>
-                </div>
-                <div class="progress-card">
-                    <div class="card-icon orange">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>5 شارات</h3>
-                        <p>الإنجازات</p>
-                    </div>
+            <!-- الخلفية المتحركة -->
+            <div class="background-animation">
+                <div class="gradient-sphere"></div>
+                <div class="gradient-sphere-2"></div>
+                <div class="floating-shapes">
+                    <div class="shape"></div>
+                    <div class="shape"></div>
+                    <div class="shape"></div>
                 </div>
             </div>
 
-            <!-- متابعة المشاهدة -->
-            <section class="continue-watching">
-                <h2>أكمل المشاهدة</h2>
-                <div class="continue-card">
-                    <img src="https://via.placeholder.com/200x120" alt="Friends">
-                    <div class="continue-info">
-                        <h3>Friends - الموسم 1 | الحلقة 2</h3>
-                        <p>تقدمك: 30%</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 30%"></div>
+            <!-- ======================================== -->
+            <!-- الهيدر العلوي - Header -->
+            <!-- ======================================== -->
+            <header class="dashboard-header" data-aos="fade-down" data-aos-duration="800">
+                <div class="header-left">
+                    <h1>
+                        مرحباً أحمد! 
+                        <span class="wave-emoji">👋</span>
+                    </h1>
+                    <p class="welcome-message">تقدمك اليوم رائع! استمر بنفس القوة 💪</p>
+                </div>
+
+                <div class="header-right">
+                    <!-- شريط البحث المتطور -->
+                    <div class="header-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="ابحث عن فيلم، كلمة، أو تحدي..." id="searchInput">
+                        <div class="search-suggestions" id="searchSuggestions">
+                            <!-- تظهر الاقتراحات هنا -->
                         </div>
-                        <button class="btn btn-primary" onclick="continueWatching()">
-                            <i class="fas fa-play"></i> أكمل المشاهدة
+                    </div>
+
+                    <!-- الإشعارات -->
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="notifications-dropdown">
+                            <h4>الإشعارات</h4>
+                            <a href="#" class="notification-item unread">
+                                <i class="fas fa-trophy"></i>
+                                <div>
+                                    <p>تهانينا! أكملت تحدي 5 كلمات</p>
+                                    <small>منذ 5 دقائق</small>
+                                </div>
+                            </a>
+                            <a href="#" class="notification-item">
+                                <i class="fas fa-fire"></i>
+                                <div>
+                                    <p>حافظ على Streak الخاص بك!</p>
+                                    <small>منذ ساعة</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- زر تغيير اللغة -->
+                    <button class="lang-switcher" onclick="toggleLanguage()">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLang">العربية</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ======================================== -->
+            <!-- بطاقات التقدم - Progress Cards -->
+            <!-- ======================================== -->
+            <div class="progress-cards">
+                <div class="progress-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon blue floating">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 id="streakCount">7</h3>
+                        <p>أيام متتالية</p>
+                        <span class="card-trend positive">
+                            <i class="fas fa-arrow-up"></i> +2 من الأسبوع الماضي
+                        </span>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="progress-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon green floating" style="animation-delay: 0.2s;">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 id="wordsCount">120</h3>
+                        <p>كلمة محفوظة</p>
+                        <span class="card-trend positive">
+                            <i class="fas fa-arrow-up"></i> +15 اليوم
+                        </span>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="progress-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon purple floating" style="animation-delay: 0.4s;">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 id="scenesCount">45</h3>
+                        <p>مشهد تمت مشاهدته</p>
+                        <span class="card-trend positive">
+                            <i class="fas fa-arrow-up"></i> +3 اليوم
+                        </span>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <div class="progress-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon orange floating" style="animation-delay: 0.6s;">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 id="achievementsCount">5</h3>
+                        <p>شارات مكتسبة</p>
+                        <span class="card-trend neutral">
+                            <i class="fas fa-minus"></i> 2 متبقية للذهب
+                        </span>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+
+            <!-- ======================================== -->
+            <!-- قسم متابعة المشاهدة - Continue Watching -->
+            <!-- ======================================== -->
+            <section class="continue-watching" data-aos="fade-up" data-aos-duration="1000">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-play-circle"></i>
+                        أكمل المشاهدة
+                    </h2>
+                    <a href="#library" class="view-all">
+                        عرض الكل <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="continue-card" onclick="continueWatching()">
+                    <div class="continue-image">
+                        <img src="https://images.unsplash.com/photo-1584905068096-36e8c5d0e63b?w=400" alt="Friends">
+                        <span class="duration">15:30 متبقي</span>
+                    </div>
+                    <div class="continue-info">
+                        <div class="movie-meta">
+                            <span class="movie-level beginner">مبتدئ</span>
+                            <span class="movie-year">2024</span>
+                        </div>
+                        <h3>Friends - الموسم 1 | الحلقة 2</h3>
+                        <p class="movie-description">تعلم 15 كلمة جديدة في مشهد "The Break" الشهير</p>
+                        
+                        <!-- شريط التقدم -->
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span>تقدم المشاهدة</span>
+                                <span class="progress-percentage">30%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 30%">
+                                    <div class="progress-glow"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- الكلمات المستفادة -->
+                        <div class="learned-words">
+                            <span class="words-label">كلمات ستتعلمها:</span>
+                            <div class="word-chips">
+                                <span class="word-chip">break</span>
+                                <span class="word-chip">relationship</span>
+                                <span class="word-chip">argue</span>
+                                <span class="word-chip">+12</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary continue-btn">
+                            <i class="fas fa-play"></i>
+                            أكمل المشاهدة
                         </button>
                     </div>
                 </div>
             </section>
 
-            <!-- توصيات -->
-            <section class="recommendations">
-                <h2>اقتراحات لك</h2>
-                <div class="movie-grid">
-                    <!-- نفس بطاقات الأفلام من قبل -->
+            <!-- ======================================== -->
+            <!-- التحديات اليومية - Daily Challenges -->
+            <!-- ======================================== -->
+            <section class="daily-challenges" data-aos="fade-up" data-aos-duration="1000">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-bolt"></i>
+                        التحديات اليومية
+                    </h2>
+                    <a href="#challenges" class="view-all">
+                        عرض الكل <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="challenges-grid">
+                    <div class="challenge-card" onclick="joinChallenge(1)">
+                        <div class="challenge-icon hot">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="challenge-info">
+                            <h4>تحدي 5 كلمات</h4>
+                            <p>من مسلسل Friends</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress" style="width: 60%"></div>
+                                </div>
+                                <span class="participants">
+                                    <i class="fas fa-users"></i> 3.2k
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-card" onclick="joinChallenge(2)">
+                        <div class="challenge-icon new">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="challenge-info">
+                            <h4>تحدي النطق</h4>
+                            <p>10 جمل من Inception</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress" style="width: 30%"></div>
+                                </div>
+                                <span class="participants">
+                                    <i class="fas fa-users"></i> 1.8k
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="challenge-card" onclick="joinChallenge(3)">
+                        <div class="challenge-icon trending">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="challenge-info">
+                            <h4>تحدي الاستماع</h4>
+                            <p>افهم اللهجة البريطانية</p>
+                            <div class="challenge-progress">
+                                <div class="progress-bar small">
+                                    <div class="progress" style="width: 15%"></div>
+                                </div>
+                                <span class="participants">
+                                    <i class="fas fa-users"></i> 956
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================== -->
+            <!-- توصيات مخصصة - Recommendations -->
+            <!-- ======================================== -->
+            <section class="recommendations" data-aos="fade-up" data-aos-duration="1000">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-star"></i>
+                        اقتراحات لك
+                    </h2>
+                    <a href="#library" class="view-all">
+                        عرض الكل <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="movie-grid" id="movieGrid">
+                    <!-- الأفلام تتحط هنا بالجافاسكريبت -->
+                </div>
+            </section>
+
+            <!-- ======================================== -->
+            <!-- نشاط المجتمع - Community Activity -->
+            <!-- ======================================== -->
+            <section class="community-activity" data-aos="fade-up" data-aos-duration="1000">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-users"></i>
+                        نشاط المجتمع
+                    </h2>
+                </div>
+
+                <div class="activity-feed">
+                    <div class="activity-item">
+                        <img src="https://ui-avatars.com/api/?name=Sara&background=ec4899&color=fff" alt="User">
+                        <div class="activity-content">
+                            <p><strong>سارة</strong> أكملت تحدي 5 كلمات 🔥</p>
+                            <small>منذ 5 دقائق</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <img src="https://ui-avatars.com/api/?name=Omar&background=6366f1&color=fff" alt="User">
+                        <div class="activity-content">
+                            <p><strong>عمر</strong> حصل على شارة "المتعلم الذهبي" 🏆</p>
+                            <small>منذ 15 دقيقة</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <img src="https://ui-avatars.com/api/?name=Nora&background=22c55e&color=fff" alt="User">
+                        <div class="activity-content">
+                            <p><strong>نورة</strong> حفظت 20 كلمة جديدة 📚</p>
+                            <small>منذ ساعة</small>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
 
+    <!-- ======================================== -->
+    <!-- JavaScript Files -->
+    <!-- ======================================== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="translations.js"></script>
     <script src="dashboard.js"></script>
+
+    <script>
+        // تهيئة AOS للأنيميشن
+        AOS.init({
+            once: true,
+            duration: 1000,
+        });
+
+        // بيانات الأفلام للتوصيات
+        const movies = [
+            {
+                id: 1,
+                title: { ar: "فريندز", en: "Friends" },
+                image: "https://images.unsplash.com/photo-1584905068096-36e8c5d0e63b?w=300",
+                level: { ar: "مبتدئ", en: "Beginner" },
+                scenes: 45
+            },
+            {
+                id: 2,
+                title: { ar: "هاري بوتر", en: "Harry Potter" },
+                image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300",
+                level: { ar: "متوسط", en: "Intermediate" },
+                scenes: 67
+            },
+            {
+                id: 3,
+                title: { ar: "استهلال", en: "Inception" },
+                image: "https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300",
+                level: { ar: "متقدم", en: "Advanced" },
+                scenes: 23
+            },
+            {
+                id: 4,
+                title: { ar: "التاج", en: "The Crown" },
+                image: "https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=300",
+                level: { ar: "متقدم", en: "Advanced" },
+                scenes: 34
+            }
+        ];
+
+        // تحميل الأفلام
+        function loadMovies() {
+            const movieGrid = document.getElementById('movieGrid');
+            if (movieGrid) {
+                movieGrid.innerHTML = '';
+                movies.forEach(movie => {
+                    const currentLang = window.currentLanguage || 'ar';
+                    const title = movie.title[currentLang];
+                    const level = movie.level[currentLang];
+                    
+                    movieGrid.innerHTML += `
+                        <div class="movie-card" onclick="goToMovie(${movie.id})">
+                            <img src="${movie.image}" alt="${title}" loading="lazy">
+                            <div class="movie-info">
+                                <h3>${title}</h3>
+                                <p><i class="fas fa-film"></i> ${movie.scenes} مشهد</p>
+                                <p><i class="fas fa-signal"></i> ${level}</p>
+                            </div>
+                            <div class="movie-overlay">
+                                <button class="play-btn"><i class="fas fa-play"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // تشغيل عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMovies();
+            
+            // تحديث الإحصائيات بشكل حي
+            updateLiveStats();
+        });
+
+        // تحديث الإحصائيات
+        function updateLiveStats() {
+            // محاكاة تحديث الأرقام
+            const streakEl = document.getElementById('streakCount');
+            const wordsEl = document.getElementById('wordsCount');
+            const scenesEl = document.getElementById('scenesCount');
+            const achievementsEl = document.getElementById('achievementsCount');
+            
+            if (streakEl) {
+                setInterval(() => {
+                    streakEl.textContent = 7 + Math.floor(Math.random() * 2);
+                }, 10000);
+            }
+        }
+
+        // دوال التفاعل
+        function continueWatching() {
+            window.location.href = 'watch.html?movie=1&scene=2';
+        }
+
+        function goToMovie(movieId) {
+            window.location.href = `watch.html?movie=${movieId}`;
+        }
+
+        function joinChallenge(challengeId) {
+            window.location.href = `challenge.html?id=${challengeId}`;
+        }
+
+        function openProfile() {
+            document.getElementById('userQuickMenu').classList.toggle('show');
+        }
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.user-info')) {
+                document.getElementById('userQuickMenu')?.classList.remove('show');
+            }
+        });
+
+        // البحث التفاعلي
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        searchInput?.addEventListener('input', (e) => {
+            const query = e.target.value;
+            if (query.length > 2) {
+                // محاكاة نتائج البحث
+                searchSuggestions.innerHTML = `
+                    <a href="#"><i class="fas fa-film"></i> Friends</a>
+                    <a href="#"><i class="fas fa-bookmark"></i> break (word)</a>
+                    <a href="#"><i class="fas fa-trophy"></i> Pronunciation Challenge</a>
+                `;
+                searchSuggestions.style.display = 'block';
+            } else {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+
+        // إخفاء الاقتراحات عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-search')) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+    </script>
 </body>
-</html>
+                            </html>
