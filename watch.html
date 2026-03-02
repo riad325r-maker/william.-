@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLingua - مشاهدة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="watch.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="watch-container">
+        <!-- الشريط العلوي -->
+        <nav class="watch-nav">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-right"></i>
+                <span data-i18n="watch.back">العودة</span>
+            </a>
+            <div class="movie-title">
+                <h2 id="movieName">Friends - The Break Scene</h2>
+            </div>
+            <button class="btn lang-switcher" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i>
+                <span id="currentLang">العربية</span>
+            </button>
+        </nav>
+
+        <!-- مشغل الفيديو مع الترجمة -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <div id="youtube-player"></div>
+                
+                <!-- طبقة الترجمة -->
+                <div class="subtitle-overlay" id="subtitleOverlay">
+                    <div class="subtitle-text" id="currentSubtitle">
+                        We were on a break!
+                    </div>
+                    <div class="subtitle-translation" id="currentTranslation">
+                        كنا في فترة انفصال!
+                    </div>
+                </div>
+
+                <!-- أزرار التحكم -->
+                <div class="video-controls">
+                    <button onclick="replay5Seconds()">
+                        <i class="fas fa-undo-alt"></i> 5
+                    </button>
+                    <button onclick="togglePlay()">
+                        <i class="fas fa-play" id="playPauseIcon"></i>
+                    </button>
+                    <button onclick="toggleLoop()">
+                        <i class="fas fa-redo-alt" id="loopIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 أقسام تحت الفيديو -->
+        <div class="scene-tabs">
+            <button class="tab-btn active" onclick="switchTab('words')" id="tabWords">
+                <i class="fas fa-book"></i>
+                <span data-i18n="watch.words">الكلمات</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('sentences')" id="tabSentences">
+                <i class="fas fa-align-left"></i>
+                <span data-i18n="watch.sentences">الجمل</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('quiz')" id="tabQuiz">
+                <i class="fas fa-question-circle"></i>
+                <span data-i18n="watch.quiz">الأسئلة</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('speak')" id="tabSpeak">
+                <i class="fas fa-microphone"></i>
+                <span data-i18n="watch.speak">النطق</span>
+            </button>
+        </div>
+
+        <!-- المحتوى حسب التبويب -->
+        <div class="tab-content">
+            <!-- تبويب الكلمات -->
+            <div class="tab-pane active" id="wordsTab">
+                <div class="words-header">
+                    <h3 data-i18n="watch.wordsInScene">كلمات المشهد</h3>
+                    <button class="btn btn-small" onclick="saveAllWords()">
+                        <i class="fas fa-save"></i>
+                        <span data-i18n="watch.saveAll">حفظ الكل</span>
+                    </button>
+                </div>
+                <div class="words-grid" id="wordsGrid">
+                    <!-- الكلمات تتحط هنا بالجافاسكربت -->
+                </div>
+            </div>
+
+            <!-- تبويب الجمل -->
+            <div class="tab-pane" id="sentencesTab">
+                <div class="sentences-list" id="sentencesList">
+                    <!-- الجمل تتحط هنا -->
+                </div>
+            </div>
+
+            <!-- تبويب الأسئلة -->
+            <div class="tab-pane" id="quizTab">
+                <div class="quiz-container" id="quizContainer">
+                    <!-- الأسئلة تتحط هنا -->
+                </div>
+            </div>
+
+            <!-- تبويب النطق -->
+            <div class="tab-pane" id="speakTab">
+                <div class="speak-container">
+                    <div class="speak-header">
+                        <h3 data-i18n="watch.practicePronunciation">تدرب على النطق</h3>
+                        <p data-i18n="watch.speakInstruction">اضغط على المايك وقل الجملة</p>
+                    </div>
+                    
+                    <!-- الجملة الحالية -->
+                    <div class="current-sentence-card">
+                        <p class="english-sentence" id="speakSentence">We were on a break!</p>
+                        <p class="arabic-sentence" id="speakTranslation">كنا في فترة انفصال!</p>
+                    </div>
+
+                    <!-- زر المايك -->
+                    <div class="mic-container">
+                        <button class="mic-btn" id="micButton" onclick="startListening()">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <p class="mic-status" id="micStatus" data-i18n="watch.clickToSpeak">اضغط للتكلم</p>
+                    </div>
+
+                    <!-- نتيجة النطق -->
+                    <div class="pronunciation-result" id="pronunciationResult" style="display: none;">
+                        <div class="result-header">
+                            <i class="fas fa-check-circle" style="color: #22c55e;"></i>
+                            <span data-i18n="watch.yourPronunciation">نطقك:</span>
+                        </div>
+                        <p class="user-speech" id="userSpeech"></p>
+                        <div class="feedback" id="feedback">
+                            <span class="score" id="score">95%</span>
+                            <span data-i18n="watch.matched">مطابق</span>
+                        </div>
+                    </div>
+
+                    <!-- أزرار التنقل بين الجمل -->
+                    <div class="sentence-navigation">
+                        <button class="nav-btn" onclick="previousSentence()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <span id="sentenceCounter">1/10</span>
+                        <button class="nav-btn" onclick="nextSentence()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="watch.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLingua - تعلم الإنجليزية بالأفلام</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span data-i18n="siteName">CineLingua</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active" data-i18n="home">الرئيسية</a></li>
+                <li><a href="#library" data-i18n="library">المكتبة</a></li>
+                <li><a href="#challenges" data-i18n="challenges">التحديات</a></li>
+                <li><a href="#about" data-i18n="about">عن الموقع</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <!-- زر تغيير اللغة -->
+                <button class="btn lang-switcher" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span id="currentLang">العربية</span>
+                </button>
+                <a href="#" class="btn btn-outline" onclick="openLoginModal()" data-i18n="login">تسجيل الدخول</a>
+                <a href="#" class="btn btn-primary" onclick="openSignupModal()" data-i18n="signup">ابدأ مجاناً</a>
+            </div>
+            <button class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- الهيدر الرئيسي مع الفيديو -->
+    <header class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop id="bg-video">
+                <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1><span data-i18n="hero.title1">تعلم الإنجليزية من</span> <span class="highlight" data-i18n="hero.title2">أفلامك المفضلة</span></h1>
+            <p data-i18n="hero.subtitle">انغمس في عالم السينما وحسّن لغتك بطريقة ممتعة وتفاعلية</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-large btn-primary" onclick="openSignupModal()" data-i18n="hero.startBtn">ابدأ التعلم مجاناً</a>
+                <a href="#how-it-works" class="btn btn-large btn-outline" data-i18n="hero.howBtn">كيف يعمل؟</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="movies-count">500+</span>
+                    <span class="stat-label" data-i18n="stats.scenes">مشهد تعليمي</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="users-count">50K+</span>
+                    <span class="stat-label" data-i18n="stats.learners">متعلم</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="words-count">15K+</span>
+                    <span class="stat-label" data-i18n="stats.words">كلمة مترجمة</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- باقي الأقسام مع إضافة data-i18n لكل النصوص -->
+    <section class="featured-movies" id="library">
+        <div class="container">
+            <h2 data-i18n="sections.featured">أشهر الأفلام والمسلسلات</h2>
+            <div class="movie-grid" id="movieGrid"></div>
+        </div>
+    </section>
+
+    <!-- قسم كيف يعمل -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 data-i18n="sections.howItWorks">كيف يعمل CineLingua؟</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1️⃣</div>
+                    <h3 data-i18n="steps.step1.title">اختر فيلمك المفضل</h3>
+                    <p data-i18n="steps.step1.desc">تصفح مكتبتنا الضخمة من أشهر الأفلام والمسلسلات</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2️⃣</div>
+                    <h3 data-i18n="steps.step2.title">شاهد وتفاعل</h3>
+                    <p data-i18n="steps.step2.desc">مشاهد مع ترجمة مزدوجة، اضغط على أي كلمة لمعرفة معناها</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3️⃣</div>
+                    <h3 data-i18n="steps.step3.title">درب نطقك</h3>
+                    <p data-i18n="steps.step3.desc">ردد الجمل واحصل على تقييم فوري لنطقك</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">4️⃣</div>
+                    <h3 data-i18n="steps.step4.title">احفظ وتقدم</h3>
+                    <p data-i18n="steps.step4.desc">احفظ الكلمات الجديدة وتابع تقدمك يوماً بعد يوم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التحديات -->
+    <section class="challenges-preview" id="challenges">
+        <div class="container">
+            <h2 data-i18n="sections.challenges">تحديات يومية تنتظرك</h2>
+            <div class="challenge-cards">
+                <div class="challenge-card">
+                    <div class="badge">🔥 <span data-i18n="challenges.new">جديد</span></div>
+                    <h3 data-i18n="challenges.challenge1.title">تحدي 5 كلمات</h3>
+                    <p data-i18n="challenges.challenge1.desc">تعلم 5 كلمات جديدة من مسلسل Friends</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%"></div>
+                    </div>
+                    <span>3284 <span data-i18n="challenges.participants">مشترك</span></span>
+                    <a href="#" class="btn btn-small" data-i18n="challenges.joinBtn">شارك الآن</a>
+                </div>
+                <div class="challenge-card">
+                    <div class="badge">⚡ <span data-i18n="challenges.quick">سريع</span></div>
+                    <h3 data-i18n="challenges.challenge2.title">تحدي النطق</h3>
+                    <p data-i18n="challenges.challenge2.desc">ردد 10 جمل من فيلم Inception</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                    <span>1823 <span data-i18n="challenges.participants">مشترك</span></span>
+                    <a href="#" class="btn btn-small" data-i18n="challenges.joinBtn">شارك الآن</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مودال تسجيل الدخول -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2 data-i18n="auth.login">تسجيل الدخول</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <input type="email" placeholder="البريد الإلكتروني" data-i18n-placeholder="auth.emailPlaceholder" required>
+                <input type="password" placeholder="كلمة المرور" data-i18n-placeholder="auth.passwordPlaceholder" required>
+                <button type="submit" class="btn btn-primary btn-full" data-i18n="auth.loginBtn">دخول</button>
+            </form>
+            <div class="social-login">
+                <p data-i18n="auth.or">أو</p>
+                <button onclick="googleLogin()" class="btn-google">
+                    <i class="fab fa-google"></i> Google
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-i18n="footer.copyright">© 2024 CineLingua - تعلم الإنجليزية بالأفلام</p>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
